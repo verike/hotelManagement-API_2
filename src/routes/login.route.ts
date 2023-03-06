@@ -9,7 +9,7 @@ loginRouter.post('/', async (req: Request, res: Response) => {
     const { username, password } = req.body
 
     const validUser = await UserModel.findOne({username: username})
-    const validPassword = await bcrypt.compare(password, validUser.password)
+    const validPassword = await bcrypt.compare(password, validUser!.password)
 
     if(!validUser && !validPassword) {
         return res.status(401).send({
@@ -19,16 +19,18 @@ loginRouter.post('/', async (req: Request, res: Response) => {
     }
 
     const useForToken = {
-        username: validUser.username,
-        id: validUser._id
+        username: validUser?.username,
+        id: validUser?._id
     }
 
-    const token = jwt.sign(useForToken, process.JWT_SECRET)
+    const JWT_SECRET = process.env.JWT_SECRET
+
+    const token = jwt.sign(useForToken, JWT_SECRET!)
 
     res.status(200).send({
         token: token,
-        username: validUser,
-        fullname: validUser.fullname,
+        username: validUser?.username,
+        fullname: validUser?.fullname,
         message: 'You have logged in successfully!'
     })
 

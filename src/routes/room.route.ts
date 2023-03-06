@@ -8,9 +8,9 @@ const router = express.Router()
 
 router.use(loginRouter)
 router.post('/create', index.validateRoomInputs, authoriseAdmin, RoomController.createRoom)
-router.get('/:id', RoomController.fetchOne)
-router.patch('/:id', authoriseAdmin, RoomController.updateRoom)
+router.get('/:name', RoomController.fetchOne)
+router.patch('/:name', authoriseAdmin, RoomController.updateRoom)
 router.get('/', RoomController.fetch)
-router.delete('/:id', authoriseAdmin, RoomController.deleteRoom)
+router.delete('/:name', authoriseAdmin, RoomController.deleteRoom)
 
 export default router;
