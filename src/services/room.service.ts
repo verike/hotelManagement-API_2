@@ -1,5 +1,5 @@
-import { ObjectId } from "mongoose";
-import iRoom from "../interfaces/room.interface";
+// import { ObjectId } from "mongoose";
+// import iRoom from "../interfaces/room.interface";
 import Room from "../models/room.model";
 
 class RoomService {

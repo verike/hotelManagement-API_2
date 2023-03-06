@@ -1,6 +1,7 @@
-import express, { Response } from "express"
+import express from "express"
 import mongoose from "mongoose"
 
+import {Response} from 'express'
 import rootRouter from "./routes/index.route"
 import loginRouter from "./routes/login.route"
 import RoomModel from './models/room.model'
